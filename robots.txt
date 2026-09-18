@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /includes/
+Disallow: /storage/
+
+Sitemap: https://www.htubmansolutionslimited.com/sitemap.xml
