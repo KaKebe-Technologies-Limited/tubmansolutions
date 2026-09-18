@@ -292,10 +292,14 @@ $FAQS = [
 
 /* ---------------- clients ---------------- */
 $CLIENTS = [
-    'UMEME Uganda Limited', 'Diamond Trust Bank', 'British High Commission', 'European Union', 'Jubilee Insurance',
-    'M-KOPA Uganda', 'Mogo Uganda', 'Rwenzori Bottling', 'World Choice Interiors', 'Pinnacle Integrated Resource',
+    'Pinnacle Integrated Resources',
+    'Hass Petroleum',
+    'Belo Energies',
+    'Yoacel Poultry Farm',
+    'Cloudvill Hotels',
+    'SAMCO CONSTRUCTION COMPANY',
+    'World Choice Interiors',
 ];
-
 /* ---------------- values / why us ---------------- */
 $WHY = [
     ['Professional Expertise', 'Our team has experience in IT support, networking, infrastructure, security systems and technology deployment.', 'fa-user-gear'],
