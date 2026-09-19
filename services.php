@@ -1,12 +1,11 @@
 <?php
 $page_key   = 'services';
-$meta_title = 'Our Services | CCTV, Networking, Access Control & IT Support in Uganda | H.Tubman Solutions';
-$meta_desc  = 'CCTV & security systems, networking, access control & biometrics, IT support, servers, cybersecurity, hardware supply and website solutions in Kampala and across Uganda.';
-$canonical  = 'services.php';
+$meta_title = 'ICT Services Uganda | CCTV, Networking & IT Support | H.Tubman';
+$meta_desc  = 'CCTV & security systems, networking, access control, IT support, servers, cybersecurity, hardware and websites in Kampala & across Uganda. Free quote.';
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
-page_banner('Our <span class="hl">Services</span>', ['Services'], 'server-rack', 'CCTV & Security | Networking | IT Support | Access Control | Servers | Digital Solutions');
+page_banner('ICT &amp; Security Services <span class="hl">in Uganda</span>', ['Services'], 'server-rack', 'CCTV & Security | Networking | IT Support | Access Control | Servers | Digital Solutions');
 ?>
 
 <section class="sec">
@@ -28,16 +27,16 @@ page_banner('Our <span class="hl">Services</span>', ['Services'], 'server-rack',
                     </div>
                     <div class="ov-body">
                         <?php if ($key === 'cctv'): ?><?= sub_title('Most Requested') ?><?php endif; ?>
-                        <h3><a href="<?= e($s['page']) ?>" style="color:inherit"><?= str_pad($n, 2, '0', STR_PAD_LEFT) ?> — <?= e($s['title']) ?></a></h3>
+                        <h3><a href="<?= e(u($s['page'])) ?>" style="color:inherit"><?= str_pad($n, 2, '0', STR_PAD_LEFT) ?> — <?= e($s['title']) ?></a></h3>
                         <p><?= e($s['excerpt']) ?></p>
                         <ul><?php foreach ($items as $it): ?><li><?= e($it) ?></li><?php endforeach; ?></ul>
                         <?php if ($key === 'cctv'): ?>
                             <div class="btn-row">
-                                <a class="btn btn-primary" href="cctv.php">Explore CCTV Solutions <i class="fa-solid fa-arrow-right"></i></a>
-                                <a class="btn btn-outline" href="cctv.php#site-assessment">Get a CCTV Quote</a>
+                                <a class="btn btn-primary" href="<?= e(u('cctv.php')) ?>">Explore CCTV Solutions <i class="fa-solid fa-arrow-right"></i></a>
+                                <a class="btn btn-outline" href="<?= e(u('cctv.php#site-assessment')) ?>">Get a CCTV Quote</a>
                             </div>
                         <?php else: ?>
-                            <a class="link-more" href="<?= e($s['page']) ?>">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <a class="link-more" href="<?= e(u($s['page'])) ?>">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                         <?php endif; ?>
                     </div>
                 </article>
@@ -46,7 +45,7 @@ page_banner('Our <span class="hl">Services</span>', ['Services'], 'server-rack',
     </div>
 </section>
 
-<section class="sec sec-soft">
+<section class="sec sec-soft" id="industries">
     <div class="container">
         <div class="sec-head" data-reveal>
             <?= sub_title('Solutions by Industry') ?>

@@ -1,0 +1,178 @@
+{
+    "brand": {
+        "phones": [
+            "0789 977 270",
+            "0784 801 913"
+        ],
+        "whatsapp": "0768 743 419",
+        "domain": "htubmansolutions.com"
+    },
+    "pages": [
+        {
+            "file": "home.png",
+            "eyebrow": "KAMPALA · UGANDA",
+            "headline": "CCTV & ICT Solutions You Can Trust in Uganda",
+            "sub": "Genuine equipment · Quality installation · Reliable support",
+            "chips": [
+                "CCTV",
+                "Networking",
+                "Access Control",
+                "IT Support"
+            ]
+        },
+        {
+            "file": "cctv-installation-uganda.png",
+            "eyebrow": "CCTV INSTALLATION",
+            "headline": "Professional CCTV Installation in Kampala & Uganda",
+            "sub": "Homes · Businesses · Solar & 4G · View cameras on your phone",
+            "chips": [
+                "Site Assessment",
+                "IP & PTZ",
+                "Solar CCTV",
+                "Repairs"
+            ]
+        },
+        {
+            "file": "ict-services-uganda.png",
+            "eyebrow": "ICT SERVICES",
+            "headline": "CCTV, Networking, Access Control & IT Support",
+            "sub": "One trusted partner for security & technology in Uganda",
+            "chips": [
+                "CCTV",
+                "Wi-Fi & LAN",
+                "Biometrics",
+                "Servers"
+            ]
+        },
+        {
+            "file": "about-us.png",
+            "eyebrow": "ABOUT US",
+            "headline": "Smart Technology. Secure Businesses. Connected Futures.",
+            "sub": "A Ugandan technology & security solutions company",
+            "chips": [
+                "Reliability",
+                "Integrity",
+                "Innovation"
+            ]
+        },
+        {
+            "file": "projects.png",
+            "eyebrow": "PROJECTS & CLIENTS",
+            "headline": "Trusted by Businesses Across Uganda",
+            "sub": "CCTV · Networks · Biometrics · IT infrastructure",
+            "chips": [
+                "Energy",
+                "Hospitality",
+                "Agriculture",
+                "Construction"
+            ]
+        },
+        {
+            "file": "faq.png",
+            "eyebrow": "FAQ",
+            "headline": "CCTV & IT Questions, Answered",
+            "sub": "Cost · Installation · Repairs · Remote viewing · Support",
+            "chips": [
+                "CCTV",
+                "Wi-Fi",
+                "Biometrics",
+                "IT Support"
+            ]
+        },
+        {
+            "file": "contact-us.png",
+            "eyebrow": "GET A FREE QUOTE",
+            "headline": "Let’s Secure & Connect Your Business",
+            "sub": "Call, WhatsApp or email our technical team today",
+            "chips": [
+                "Call",
+                "WhatsApp",
+                "Email"
+            ]
+        },
+        {
+            "file": "networking-structured-cabling-kampala.png",
+            "eyebrow": "NETWORKING & INFRASTRUCTURE",
+            "headline": "Networking, Wi-Fi & Structured Cabling in Kampala",
+            "sub": "We design, install, configure and maintain wired and wireless networks for homes, offices, businesses…",
+            "chips": [
+                "LAN installation",
+                "Wi-Fi installation",
+                "Structured cabling",
+                "Network configuration"
+            ]
+        },
+        {
+            "file": "access-control-biometrics-uganda.png",
+            "eyebrow": "ACCESS CONTROL & BIOMETRICS",
+            "headline": "Access Control & Biometric Systems in Uganda",
+            "sub": "Improve physical security and manage access to your premises using modern access control technology.",
+            "chips": [
+                "Fingerprint biometric…",
+                "Facial recognition",
+                "RFID\/card access",
+                "PIN\/keypad access"
+            ]
+        },
+        {
+            "file": "it-support-kampala.png",
+            "eyebrow": "IT SUPPORT & MANAGED SERVICES",
+            "headline": "IT Support & Managed IT Services in Kampala",
+            "sub": "H.Tubman Solutions provides professional IT support to help organizations maintain reliable and…",
+            "chips": [
+                "Computer…",
+                "Windows installation…",
+                "Software installation",
+                "Hardware…"
+            ]
+        },
+        {
+            "file": "server-installation-uganda.png",
+            "eyebrow": "SERVERS & DATA SOLUTIONS",
+            "headline": "Server Installation & Data Solutions in Uganda",
+            "sub": "We help organizations deploy and maintain server and data infrastructure suitable for their operational…",
+            "chips": [
+                "Windows Server…",
+                "Active Directory",
+                "DNS & DHCP",
+                "File servers"
+            ]
+        },
+        {
+            "file": "cybersecurity-services-uganda.png",
+            "eyebrow": "CYBERSECURITY",
+            "headline": "Cybersecurity Services for Businesses in Uganda",
+            "sub": "We help organizations strengthen their IT environments through practical security solutions.",
+            "chips": [
+                "Endpoint security",
+                "Antivirus deployment",
+                "Firewall configuration",
+                "Network security"
+            ]
+        },
+        {
+            "file": "computer-hardware-supply-uganda.png",
+            "eyebrow": "HARDWARE & TECHNOLOGY SUPPLY",
+            "headline": "Computer & Hardware Supply in Uganda",
+            "sub": "We supply, install and maintain a range of technology equipment for businesses and organizations.",
+            "chips": [
+                "Desktop computers",
+                "Laptops",
+                "Servers",
+                "Printers"
+            ]
+        },
+        {
+            "file": "website-design-kampala.png",
+            "eyebrow": "WEBSITE & DIGITAL SOLUTIONS",
+            "headline": "Website Design & Digital Solutions in Kampala",
+            "sub": "We provide practical digital solutions designed to help businesses establish and maintain their online…",
+            "chips": [
+                "Business websites",
+                "Website design",
+                "Website development",
+                "Website maintenance"
+            ]
+        }
+    ]
+}

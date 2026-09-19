@@ -9,16 +9,20 @@ function sub_title($text, $light = false)
 
 function page_banner($title, $crumb, $img_key, $lead = '')
 {
+    // breadcrumb trail for the BreadcrumbList schema
+    foreach ((array) $crumb as $href => $label) {
+        $GLOBALS['SEO_CRUMBS'][] = [$label, is_string($href) ? $href : current_file()];
+    }
     ?>
     <section class="page-banner" style="--bg:url('<?= e(img($img_key, 1800)) ?>')">
         <div class="container">
             <h1><?= $title ?></h1>
             <?php if ($lead): ?><p class="lead"><?= e($lead) ?></p><?php endif; ?>
             <ol class="breadcrumb" aria-label="Breadcrumb">
-                <li><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="<?= e(u('index.php')) ?>"><i class="fa-solid fa-house"></i> Home</a></li>
                 <?php foreach ((array) $crumb as $href => $label): ?>
                     <?php if (is_string($href)): ?>
-                        <li><a href="<?= e($href) ?>"><?= e($label) ?></a></li>
+                        <li><a href="<?= e(u($href)) ?>"><?= e($label) ?></a></li>
                     <?php else: ?>
                         <li aria-current="page"><?= e($label) ?></li>
                     <?php endif; ?>
@@ -39,8 +43,10 @@ function quote_form($preselect = '', $button = 'Request a Quote', $source = '')
     $val = function ($k) use ($old) { return e($old[$k] ?? ''); };
     $selected = $old['service'] ?? $preselect;
     ?>
-    <form class="quote-form" action="contact.php#quote" method="post" data-wa-form novalidate>
+    <form class="quote-form" action="<?= e(u('contact.php#quote')) ?>" method="post" data-wa-form novalidate>
         <input type="hidden" name="source" value="<?= e($source) ?>">
+        <input type="hidden" name="page" value="<?= e($_SERVER['REQUEST_URI'] ?? '') ?>">
+        <input type="hidden" name="ts" value="<?= time() ?>">
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <div class="form-grid">
             <label class="field"><span>Name <em>*</em></span>
@@ -69,10 +75,16 @@ function quote_form($preselect = '', $button = 'Request a Quote', $source = '')
     <?php
 }
 
-function faq_list($faqs, $group = 'faq')
+function faq_slug($question)
 {
-    foreach ($faqs as $i => $f): ?>
-        <details class="faq-item" name="<?= e($group) ?>"<?= $i === 0 ? ' open' : '' ?>>
+    return 'q-' . trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($question)), '-');
+}
+
+function faq_list($faqs, $group = 'faq', $open_first = true)
+{
+    foreach ($faqs as $i => $f):
+        $GLOBALS['SEO_FAQ'][$f[0]] = $f[1]; // collected for the FAQPage schema ?>
+        <details class="faq-item" id="<?= e(faq_slug($f[0])) ?>" name="<?= e($group) ?>"<?= $i === 0 && $open_first ? ' open' : '' ?>>
             <summary><span class="q-num"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></span><?= e($f[0]) ?><i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
             <div class="faq-body"><p><?= e($f[1]) ?></p></div>
         </details>
@@ -135,7 +147,7 @@ function cta_band($title = null, $text = null, $with_counters = false)
             <div class="cta-phone"><i class="fa-solid fa-phone-volume"></i>
                 <a href="<?= e(tel($SITE['phones'][0])) ?>">0789 977 270</a><span>/</span><a href="<?= e(tel($SITE['phones'][1])) ?>">0784 801 913</a></div>
             <div class="btn-row center">
-                <a class="btn btn-primary" href="contact.php#quote">Get a Free Quote <i class="fa-solid fa-arrow-right"></i></a>
+                <a class="btn btn-primary" href="<?= e(u('contact.php#quote')) ?>">Get a Free Quote <i class="fa-solid fa-arrow-right"></i></a>
                 <a class="btn btn-wa" href="<?= e(wa()) ?>" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
                 <a class="btn btn-outline-light" href="<?= e(tel($SITE['phones'][0])) ?>"><i class="fa-solid fa-phone"></i> Call Us Now</a>
             </div>

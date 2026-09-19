@@ -1,6 +1,25 @@
+# H.Tubman Solutions Limited - https://www.htubmansolutions.com
+# Search engines AND AI assistants / answer engines are welcome to crawl and cite this site.
 User-agent: *
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: DuckAssistBot
 Allow: /
 Disallow: /includes/
 Disallow: /storage/
+Disallow: /tools/
+Disallow: /search
 
-Sitemap: https://www.htubmansolutionslimited.com/sitemap.xml
+Sitemap: https://www.htubmansolutions.com/sitemap.xml

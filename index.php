@@ -1,8 +1,11 @@
 <?php
 $page_key   = 'home';
-$meta_title = 'CCTV Installation Kampala Uganda | H.Tubman Solutions Limited';
-$meta_desc  = 'Professional CCTV installation in Kampala and Uganda. H.Tubman Solutions provides CCTV cameras, security systems, networking, access control, IT support and technology solutions.';
-$canonical  = '';
+$meta_title = 'CCTV Installation Kampala | ICT & Networking Solutions Uganda';
+$meta_desc  = 'H.Tubman Solutions: trusted CCTV installers in Kampala. Security cameras, networking, access control & IT support for homes & businesses. Free quote!';
+$og_title   = 'CCTV & ICT Solutions in Kampala, Uganda | H.Tubman';
+$og_desc    = 'Professional CCTV installation, networking and IT support for homes & businesses. Trusted by leading organizations in Uganda.';
+require_once __DIR__ . '/includes/config.php';
+$preload_image = img('cctv-wall', 1920);
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
@@ -10,7 +13,7 @@ $slides = [
     [
         'img'   => 'cctv-wall',
         'tag'   => 'CCTV & ICT Solutions in Uganda',
-        'title' => 'CCTV &amp; ICT Solutions You Can <span class="hl">Trust</span>',
+        'title' => 'CCTV &amp; ICT Solutions You Can <span class="hl">Trust</span> in Uganda',
         'text'  => 'Protect your property, connect your business, and keep your technology working with professional solutions from H.Tubman Solutions Limited.',
     ],
     [
@@ -43,13 +46,14 @@ $slides = [
                     <?php endif; ?>
                     <p><?= e($s['text']) ?></p>
                     <div class="btn-row">
-                        <a class="btn btn-primary" href="contact.php#quote">Get a Free CCTV Quote <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="btn btn-primary" href="<?= e(u('contact.php#quote')) ?>">Get a Free CCTV Quote <i class="fa-solid fa-arrow-right"></i></a>
                         <a class="btn btn-outline-light" href="<?= e(wa('Hello H.Tubman Solutions, I would like to talk to an expert.')) ?>" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Talk to an Expert</a>
                     </div>
                     <ul class="hero-trust">
-                        <li><i class="fa-solid fa-circle-check"></i>Professional Installation</li>
-                        <li><i class="fa-solid fa-circle-check"></i>Quality Equipment</li>
-                        <li><i class="fa-solid fa-circle-check"></i>Reliable Technical Support</li>
+                        <li><i class="fa-solid fa-circle-check"></i>Genuine Equipment</li>
+                        <li><i class="fa-solid fa-circle-check"></i>Quality Installation</li>
+                        <li><i class="fa-solid fa-circle-check"></i>Affordable, Custom Quotes</li>
+                        <li><i class="fa-solid fa-circle-check"></i>Quick Support on WhatsApp</li>
                     </ul>
                 </div>
             </div>
@@ -63,8 +67,10 @@ $slides = [
 <!-- quick quote bar -->
 <div class="quick-quote-wrap">
     <div class="container">
-        <form class="quick-quote" action="contact.php#quote" method="post" aria-label="Quick quote request">
+        <form class="quick-quote" action="<?= e(u('contact.php#quote')) ?>" method="post" aria-label="Quick quote request">
             <input type="hidden" name="source" value="Homepage quick quote">
+            <input type="hidden" name="page" value="/">
+            <input type="hidden" name="ts" value="<?= time() ?>">
             <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
             <div class="qq-grid">
                 <input type="text" name="name" placeholder="Your Name *" aria-label="Your name" required autocomplete="name">
@@ -107,7 +113,7 @@ $slides = [
         <div class="about-media" data-reveal>
             <div class="about-img-main"><img src="<?= e(img('technician-2', 900)) ?>" alt="H.Tubman technician at an equipment installation" loading="lazy"></div>
             <div class="about-img-sub"><img src="<?= e(img('cctv-pole', 600)) ?>" alt="Outdoor CCTV cameras mounted on a pole" loading="lazy"></div>
-            <div class="exp-badge"><strong>10+</strong><span>Notable organizations served</span></div>
+            <div class="exp-badge"><strong>8</strong><span>Core solution areas</span></div>
             <div class="dots-pattern" aria-hidden="true"></div>
         </div>
         <div class="about-content" data-reveal>
@@ -122,7 +128,7 @@ $slides = [
                 <span class="ai-icon"><i class="fa-solid fa-house-laptop"></i></span>
                 <div><h4>Solutions for Homes &amp; Businesses</h4><p>From a single camera at home to complete business IT infrastructure.</p></div>
             </div>
-            <a class="btn btn-primary" href="about.php">Discover More <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-primary" href="<?= e(u('about.php')) ?>">Discover More <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -135,16 +141,16 @@ $slides = [
                 <?= sub_title('Our Main Services', true) ?>
                 <h2 class="sec-title">CCTV &amp; ICT Solutions Built Around <span class="hl">Your Needs</span></h2>
                 <p>From CCTV camera installation and access control to networking, IT support and infrastructure — we design, install and maintain technology systems for homes, businesses and institutions across Uganda.</p>
-                <a class="btn btn-primary" href="services.php">View All Services <i class="fa-solid fa-arrow-right"></i></a>
+                <a class="btn btn-primary" href="<?= e(u('services.php')) ?>">View All Services <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <?php $n = 0; foreach ($SERVICES as $key => $s): $n++; ?>
                 <div class="svc-card<?= $key === 'cctv' ? ' featured' : '' ?>" data-reveal>
                     <?php if ($key === 'cctv'): ?><span class="svc-badge">Most Requested</span><?php endif; ?>
                     <span class="svc-num"><?= str_pad($n, 2, '0', STR_PAD_LEFT) ?></span>
                     <span class="svc-icon"><i class="fa-solid <?= e($s['icon']) ?>"></i></span>
-                    <h3><a href="<?= e($s['page']) ?>"><?= e($s['title']) ?></a></h3>
+                    <h3><a href="<?= e(u($s['page'])) ?>"><?= e($s['title']) ?></a></h3>
                     <p><?= e($s['excerpt']) ?></p>
-                    <a class="svc-arrow" href="<?= e($s['page']) ?>" aria-label="Learn more about <?= e($s['title']) ?>"><i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="svc-arrow" href="<?= e(u($s['page'])) ?>" aria-label="Learn more about <?= e($s['title']) ?>"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             <?php endforeach; ?>
             <div class="svc-cta-card" data-reveal>
@@ -172,21 +178,21 @@ $slides = [
                 <?php endforeach; ?>
             </ul>
             <div class="btn-row">
-                <a class="btn btn-primary" href="cctv.php#site-assessment">Get a CCTV Site Assessment <i class="fa-solid fa-arrow-right"></i></a>
-                <a class="btn btn-outline" href="cctv.php">Explore CCTV Solutions</a>
+                <a class="btn btn-primary" href="<?= e(u('cctv.php#site-assessment')) ?>">Get a CCTV Site Assessment <i class="fa-solid fa-arrow-right"></i></a>
+                <a class="btn btn-outline" href="<?= e(u('cctv.php')) ?>">Explore CCTV Solutions</a>
             </div>
         </div>
         <div class="cam-view" data-reveal>
-            <img src="<?= e(img('control-room', 1100)) ?>" alt="Security monitoring room with multiple CCTV screens" loading="lazy">
+            <img src="<?= e(img('warehouse', 1100)) ?>" alt="CCTV camera view of a warehouse aisle" loading="lazy">
             <span class="scan" aria-hidden="true"></span>
             <div class="cam-hud" aria-hidden="true">
                 <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
                 <span class="rec">REC</span>
                 <span class="cam-id">CAM 01 · HD</span>
-                <span class="cam-loc">KAMPALA</span>
+                <span class="cam-loc">WAREHOUSE · KAMPALA</span>
                 <span class="cam-time" data-cam-clock></span>
             </div>
-            <a class="cam-play" href="cctv.php" aria-label="Explore our CCTV solutions"><i class="fa-solid fa-video"></i></a>
+            <a class="cam-play" href="<?= e(u('cctv.php')) ?>" aria-label="Explore our CCTV solutions"><i class="fa-solid fa-video"></i></a>
         </div>
     </div>
 </section>
@@ -207,7 +213,7 @@ $slides = [
                     <h3><?= e($env[0]) ?></h3>
                     <p><?= e($env[1]) ?></p>
                     <hr>
-                    <a class="btn btn-outline btn-sm" href="cctv.php#site-assessment">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn btn-outline btn-sm" href="<?= e(u('cctv.php#site-assessment')) ?>">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -244,7 +250,7 @@ $slides = [
     <div class="container">
         <div class="counter-bar">
             <div class="counter"><span class="c-icon"><i class="fa-solid fa-layer-group"></i></span><div><strong data-count="8">8</strong><span>Core Solution Areas</span></div></div>
-            <div class="counter"><span class="c-icon"><i class="fa-solid fa-building-shield"></i></span><div><strong data-count="10" data-suffix="+">10+</strong><span>Notable Organizations Served</span></div></div>
+            <div class="counter"><span class="c-icon"><i class="fa-solid fa-building-shield"></i></span><div><strong data-count="<?= count($CLIENTS) ?>"><?= count($CLIENTS) ?></strong><span>Trusted Client Organizations</span></div></div>
             <div class="counter"><span class="c-icon"><i class="fa-solid fa-list-check"></i></span><div><strong data-count="7">7</strong><span>Step CCTV Installation Process</span></div></div>
             <div class="counter"><span class="c-icon"><i class="fa-solid fa-sliders"></i></span><div><strong data-count="100" data-suffix="%">100%</strong><span>Customized to Your Site</span></div></div>
         </div>
@@ -322,7 +328,7 @@ $slides = [
             <p>We have supported technology and infrastructure requirements across different business environments.</p>
         </div>
         <?php clients_grid(); ?>
-        <div class="center" style="margin-top:44px"><a class="btn btn-primary" href="projects.php">View Our Projects <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="center" style="margin-top:44px"><a class="btn btn-primary" href="<?= e(u('projects.php')) ?>">View Our Projects <i class="fa-solid fa-arrow-right"></i></a></div>
     </div>
 </section>
 
@@ -336,15 +342,15 @@ $slides = [
         <div class="mvv-grid">
             <article class="mvv-card" data-reveal>
                 <div class="mvv-img"><img src="<?= e(img('professional', 700)) ?>" alt="" loading="lazy"><span class="mvv-tag">Mission</span></div>
-                <div class="mvv-body"><h3>Our Mission</h3><p>To deliver dependable, future-ready technology and integrated business solutions that empower organizations through innovation, trust and operational excellence.</p><a class="link-more" href="about.php#mission">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
+                <div class="mvv-body"><h3>Our Mission</h3><p>To deliver dependable, future-ready technology and integrated business solutions that empower organizations through innovation, trust and operational excellence.</p><a class="link-more" href="<?= e(u('about.php#mission')) ?>">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
             </article>
             <article class="mvv-card" data-reveal>
                 <div class="mvv-img"><img src="<?= e(img('city', 700)) ?>" alt="" loading="lazy"><span class="mvv-tag">Vision</span></div>
-                <div class="mvv-body"><h3>Our Vision</h3><p>To become East Africa’s most trusted force in transformative technology and enterprise solutions, shaping smarter businesses and connected communities.</p><a class="link-more" href="about.php#mission">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
+                <div class="mvv-body"><h3>Our Vision</h3><p>To become East Africa’s most trusted force in transformative technology and enterprise solutions, shaping smarter businesses and connected communities.</p><a class="link-more" href="<?= e(u('about.php#mission')) ?>">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
             </article>
             <article class="mvv-card" data-reveal>
                 <div class="mvv-img"><img src="<?= e(img('team-desk', 700)) ?>" alt="" loading="lazy"><span class="mvv-tag">Values</span></div>
-                <div class="mvv-body"><h3>Our Values</h3><p>Reliability, professionalism, innovation, integrity and customer focus guide every consultation, installation and support call.</p><a class="link-more" href="about.php#values">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
+                <div class="mvv-body"><h3>Our Values</h3><p>Reliability, professionalism, innovation, integrity and customer focus guide every consultation, installation and support call.</p><a class="link-more" href="<?= e(u('about.php#values')) ?>">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
             </article>
         </div>
     </div>

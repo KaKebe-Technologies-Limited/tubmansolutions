@@ -1,18 +1,59 @@
-# H.Tubman Solutions — Apache settings
+# H.Tubman Solutions — Apache / Hostinger settings
 Options -Indexes
-# If the site lives in a sub-folder (e.g. /tubmansolutions/ on XAMPP) use that path instead.
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+# If the site lives in a sub-folder (e.g. /tubmansolutions/ on XAMPP) change this to /tubmansolutions/404.php
 ErrorDocument 404 /404.php
 
-# Block direct access to internals
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^(includes|storage)(/|$) - [F,L]
-    RewriteRule ^\.claude(/|$) - [F,L]
+
+    # --- one canonical host: https://www.htubmansolutions.com (only on the live domain; local dev unaffected) ---
+    RewriteCond %{HTTP_HOST} ^htubmansolutions\.com$ [NC]
+    RewriteRule ^ https://www.htubmansolutions.com%{REQUEST_URI} [R=301,L]
+    RewriteCond %{HTTP_HOST} ^www\.htubmansolutions\.com$ [NC]
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://www.htubmansolutions.com%{REQUEST_URI} [R=301,L]
+
+    # --- block internals ---
+    RewriteRule ^(includes|storage|tools|\.claude|\.git)(/|$) - [F,L]
+    RewriteRule ^router\.php$ - [F,L]
+
+    # --- machine-readable files ---
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+    RewriteRule ^llms\.txt$ llms.php [L]
+
+    # --- SEO-friendly page URLs (keep in sync with $ROUTES in includes/config.php) ---
+    RewriteRule ^cctv-installation-uganda/?$ cctv.php [L,QSA]
+    RewriteRule ^ict-services-uganda/?$ services.php [L,QSA]
+    RewriteRule ^networking-structured-cabling-kampala/?$ networking.php [L,QSA]
+    RewriteRule ^access-control-biometrics-uganda/?$ access-control.php [L,QSA]
+    RewriteRule ^it-support-kampala/?$ it-support.php [L,QSA]
+    RewriteRule ^server-installation-uganda/?$ servers.php [L,QSA]
+    RewriteRule ^cybersecurity-services-uganda/?$ cybersecurity.php [L,QSA]
+    RewriteRule ^computer-hardware-supply-uganda/?$ hardware.php [L,QSA]
+    RewriteRule ^website-design-kampala/?$ digital-solutions.php [L,QSA]
+    RewriteRule ^about-us/?$ about.php [L,QSA]
+    RewriteRule ^projects/?$ projects.php [L,QSA]
+    RewriteRule ^faq/?$ faq.php [L,QSA]
+    RewriteRule ^contact-us/?$ contact.php [L,QSA]
+    RewriteRule ^search/?$ search.php [L,QSA]
 </IfModule>
 
-# Compression & caching for static assets
+# --- security headers ---
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    <FilesMatch "\.(png|jpe?g|webp|svg|ico|woff2?)$">
+        Header set Cache-Control "public, max-age=7776000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# --- compression & caching (Core Web Vitals) ---
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript application/json image/svg+xml
 </IfModule>
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -20,4 +61,5 @@ ErrorDocument 404 /404.php
     ExpiresByType application/javascript "access plus 30 days"
     ExpiresByType image/png "access plus 90 days"
     ExpiresByType image/jpeg "access plus 90 days"
+    ExpiresByType image/webp "access plus 90 days"
 </IfModule>

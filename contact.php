@@ -2,9 +2,8 @@
 require __DIR__ . '/includes/form-handler.php';
 
 $page_key   = 'contact';
-$meta_title = 'Contact H.Tubman Solutions | CCTV Installation & IT Support Kampala';
-$meta_desc  = 'Contact H.Tubman Solutions Limited in Kampala for CCTV installation, networking, access control, IT support and technology solutions. Call 0789977270 / 0784801913.';
-$canonical  = 'contact.php';
+$meta_title = 'Contact H.Tubman Solutions | CCTV & IT Company in Kampala, Uganda';
+$meta_desc  = 'Free quote for CCTV, networking, access control & IT support in Kampala. Call 0789977270, WhatsApp 0768743419 or email info@htubmansolutions.com.';
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
@@ -24,7 +23,7 @@ page_banner('Let’s Secure &amp; Connect <span class="hl">Your Business</span>'
             <div class="contact-card" data-reveal>
                 <span class="cc-icon"><i class="fa-solid fa-phone-volume"></i></span>
                 <h3>Phone</h3>
-                <p><a href="<?= e(tel($SITE['phones'][0])) ?>">0789 977 270</a><br><a href="<?= e(tel($SITE['phones'][1])) ?>">0784 801 913</a></p>
+                <p><a href="<?= e(tel($SITE['phones'][0])) ?>">0789 977 270</a><br><a href="<?= e(tel($SITE['phones'][1])) ?>">0784 801 913</a><br><a href="<?= e(wa()) ?>" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <?= e($SITE['whatsapp_display']) ?></a></p>
             </div>
             <div class="contact-card" data-reveal>
                 <span class="cc-icon"><i class="fa-solid fa-envelope-open-text"></i></span>

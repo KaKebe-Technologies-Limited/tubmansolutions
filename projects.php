@@ -1,8 +1,7 @@
 <?php
 $page_key   = 'projects';
-$meta_title = 'Projects & Experience | CCTV, Networking & IT Projects in Uganda | H.Tubman Solutions';
-$meta_desc  = 'Selected projects and experience across CCTV installation, network infrastructure, IT support, biometrics, access control and server configuration for organizations in Uganda.';
-$canonical  = 'projects.php';
+$meta_title = 'Projects & Clients | CCTV & ICT Projects in Uganda | H.Tubman';
+$meta_desc  = 'CCTV installation, network infrastructure, IT support, biometrics, access control and server projects for organizations across Uganda.';
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
@@ -17,7 +16,7 @@ $areas = [
     ['Security Infrastructure', 'fa-shield-halved'],
 ];
 
-page_banner('Projects &amp; <span class="hl">Experience</span>', ['Projects'], 'control-room', 'We have supported technology and infrastructure requirements across different business environments.');
+page_banner('Projects &amp; <span class="hl">Experience</span>', ['Projects'], 'cctv-wall', 'We have supported technology and infrastructure requirements across different business environments.');
 ?>
 
 <section class="sec">
@@ -25,7 +24,7 @@ page_banner('Projects &amp; <span class="hl">Experience</span>', ['Projects'], '
         <div class="sec-head" data-reveal>
             <?= sub_title('Areas of Experience') ?>
             <h2 class="sec-title">Selected Projects &amp; <span class="hl">Experience</span></h2>
-            <p>Our team has delivered technology and security projects across banking, utilities, diplomatic, insurance, finance, manufacturing and commercial environments.</p>
+            <p>Our experience spans energy and petroleum, hospitality, agriculture, construction, interiors and business services.</p>
         </div>
         <div class="exp-grid">
             <?php foreach ($areas as $a): ?>
@@ -59,9 +58,9 @@ page_banner('Projects &amp; <span class="hl">Experience</span>', ['Projects'], '
             $gallery = [
                 ['CCTV Surveillance', 'Indoor and outdoor camera systems with recording and remote viewing.', 'fa-video', 'cctv-pole'],
                 ['Network Infrastructure', 'Structured cabling, switches, racks and Wi-Fi.', 'fa-network-wired', 'network-cables'],
-                ['Monitoring & Control', 'Surveillance monitoring and system configuration.', 'fa-display', 'control-room'],
-                ['Servers & Data', 'Server deployment, storage and backups.', 'fa-server', 'datacenter'],
-                ['Access Control', 'Biometric, card and PIN door access.', 'fa-fingerprint', 'smart-lock'],
+                ['Monitoring & Control', 'Surveillance monitoring and system configuration.', 'fa-display', 'dashboard'],
+                ['Servers & Data', 'Server deployment, storage and backups.', 'fa-server', 'server-woman'],
+                ['Access Control', 'Biometric, card and PIN door access.', 'fa-fingerprint', 'vault'],
                 ['On-site IT Support', 'Troubleshooting, deployment and maintenance.', 'fa-headset', 'technician'],
                 ['Hardware Deployment', 'Computers, printers, UPS and accessories.', 'fa-computer', 'printer'],
             ];

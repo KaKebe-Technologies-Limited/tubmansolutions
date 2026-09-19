@@ -9,11 +9,12 @@ $svc        = $SERVICES[$slug];
 $page_key   = $svc['page'];
 $meta_title = $svc['seo_title'];
 $meta_desc  = $svc['seo_desc'];
-$canonical  = $svc['page'];
+$og_title   = $svc['h1'] . ' | H.Tubman Solutions';
 require __DIR__ . '/header.php';
 require __DIR__ . '/partials.php';
 
-page_banner(e($svc['title']), ['services.php' => 'Services', $svc['nav']], $svc['banner'] ?? $svc['img'], $svc['excerpt']);
+page_banner(e($svc['h1']), ['services.php' => 'Services', $svc['nav']], $svc['banner'] ?? $svc['img'], $svc['excerpt']);
+$SEO_EXTRA[] = service_node($svc['h1'], implode(' ', $svc['intro']) . ' ' . $svc['excerpt'], $svc['page'], $svc['list'], $svc['title']);
 ?>
 
 <section class="sec">
@@ -23,7 +24,7 @@ page_banner(e($svc['title']), ['services.php' => 'Services', $svc['nav']], $svc[
                 <h3>All Services</h3>
                 <nav class="side-links" aria-label="Services">
                     <?php foreach ($SERVICES as $k => $s): ?>
-                        <a href="<?= e($s['page']) ?>"<?= $k === $slug ? ' class="active" aria-current="page"' : '' ?>><?= e($s['title']) ?><i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="<?= e(u($s['page'])) ?>"<?= $k === $slug ? ' class="active" aria-current="page"' : '' ?>><?= e($s['title']) ?><i class="fa-solid fa-arrow-right"></i></a>
                     <?php endforeach; ?>
                 </nav>
             </div>
@@ -82,7 +83,7 @@ page_banner(e($svc['title']), ['services.php' => 'Services', $svc['nav']], $svc[
                     <p>Tell us what you need and we’ll recommend the right solution.</p>
                 </div>
                 <div class="btn-row">
-                    <a class="btn btn-primary" href="contact.php?service=<?= rawurlencode($svc['option']) ?>#quote">Request a Quote <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn btn-primary" href="<?= e(u('contact.php')) ?>?service=<?= rawurlencode($svc['option']) ?>#quote">Request a Quote <i class="fa-solid fa-arrow-right"></i></a>
                     <a class="btn btn-wa" href="<?= e(wa('Hello H.Tubman Solutions, I am interested in ' . $svc['title'] . '.')) ?>" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
                 </div>
             </div>

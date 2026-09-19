@@ -12,12 +12,69 @@ $SITE = [
     'tagline'   => 'Smart Technology. Secure Businesses. Connected Futures.',
     'location'  => 'Kampala, Uganda',
     'phones'    => ['0789977270', '0784801913'],
-    'whatsapp'  => '256789977270',               // international format, no "+"
-    'email'     => 'htubmansolutions@gmail.com',
-    'website'   => 'www.htubmansolutionslimited.com',
-    'url'       => 'https://www.htubmansolutionslimited.com', // production base URL (canonical/SEO)
+    'whatsapp'  => '256768743419',               // international format, no "+" (0768 743 419)
+    'whatsapp_display' => '0768 743 419',
+    'email'     => 'info@htubmansolutions.com',
+    'website'   => 'www.htubmansolutions.com',
+    'url'       => 'https://www.htubmansolutions.com',    // production base URL (canonical, sitemap, schema, share images)
     'lines'     => 'CCTV & Security | Networking | IT Support | Access Control | Servers | Digital Solutions',
+
+    /* --- Local SEO / NAP: keep these IDENTICAL on Google Business Profile, directories and social pages --- */
+    'alt_name'    => 'H.Tubman Solutions',
+    'street'      => '',                 // e.g. 'Plot 12, Ntinda Road' - add once the Google Business Profile address is set
+    'region'      => 'Central Region',
+    'price_range' => '$$',
+    'hours'       => [],                 // e.g. ['Mo-Fr 08:00-18:00', 'Sa 09:00-14:00'] (schema.org openingHours format)
+    'social'      => [                   // paste full profile URLs; empty ones are ignored
+        'facebook'  => '',
+        'instagram' => '',
+        'linkedin'  => '',
+        'x'         => '',
+        'tiktok'    => '',
+        'youtube'   => '',
+    ],
+    'google_business' => '',             // Google Maps / Business Profile URL
+    'google_review'   => '',             // "Write a review" short link from Google Business Profile
 ];
+
+/* ---------------------------------------------------------------
+ * SEO-friendly URLs: PHP file => public slug ('' = site root).
+ * Apache maps them in .htaccess; router.php does it for `php -S`.
+ * ------------------------------------------------------------- */
+$ROUTES = [
+    'index.php'             => '',
+    'cctv.php'              => 'cctv-installation-uganda',
+    'services.php'          => 'ict-services-uganda',
+    'networking.php'        => 'networking-structured-cabling-kampala',
+    'access-control.php'    => 'access-control-biometrics-uganda',
+    'it-support.php'        => 'it-support-kampala',
+    'servers.php'           => 'server-installation-uganda',
+    'cybersecurity.php'     => 'cybersecurity-services-uganda',
+    'hardware.php'          => 'computer-hardware-supply-uganda',
+    'digital-solutions.php' => 'website-design-kampala',
+    'about.php'             => 'about-us',
+    'projects.php'          => 'projects',
+    'faq.php'               => 'faq',
+    'contact.php'           => 'contact-us',
+    'search.php'            => 'search',
+];
+
+/** Public (relative) URL for a page file, keeping any ?query or #hash: u('contact.php#quote'). */
+function u($file)
+{
+    global $ROUTES;
+    if (preg_match('/^([a-z0-9-]+\.php)(.*)$/', $file, $m) && isset($ROUTES[$m[1]])) {
+        return ($ROUTES[$m[1]] === '' ? './' : $ROUTES[$m[1]]) . $m[2];
+    }
+    return $file;
+}
+
+/** Absolute canonical URL for a page file. */
+function abs_url($file = 'index.php')
+{
+    global $ROUTES, $SITE;
+    return $SITE['url'] . '/' . ($ROUTES[$file] ?? $file);
+}
 
 /* ---------------------------------------------------------------
  * Images. Values are Unsplash photo IDs (hot-linked) or a local
@@ -25,37 +82,38 @@ $SITE = [
  * real H.Tubman project photos whenever they are available.
  * ------------------------------------------------------------- */
 $IMAGES = [
+    // no people
     'cctv-wall'       => '1557597774-9d273605dfa9',
     'cctv-pole'       => '1589935447067-5531094415d1',
     'cctv-sign'       => '1590856029826-c7a73142bbf1',
-    'control-room'    => '1581092795360-fd1ca04f0952',
-    'technician'      => '1621905251189-08b45d6a269e',
-    'technician-2'    => '1621905252507-b35492cc74b4',
-    'team-desk'       => '1531482615713-2afd69097998',
     'network-cables'  => '1544197150-b99a580bb7a8',
     'network-switch'  => '1551703599-6b3e8379aa8c',
     'fiber-rack'      => '1520869562399-e772f042f422',
     'server-rack'     => '1558494949-ef010cbdcc31',
-    'server-woman'    => '1573164713988-8665fc963095',
-    'datacenter'      => '1586772002130-b0f3daa6288b',
-    'smart-lock'      => '1558002038-1055907df827',
+    'vault'           => '1582139329536-e7284fece509',
     'padlock'         => '1614064641938-3bbee52942c7',
     'circuit'         => '1550751827-4bd374c3f58b',
-    'hardware-repair' => '1581092918056-0c4c3acd3789',
+    'circuit-green'   => '1517077304055-6e89abbf09b0',
     'printer'         => '1612815154858-60aa4c59eaa6',
     'cpu'             => '1591799264318-7e6ef8ddb7ea',
     'web-design'      => '1547658719-da2b51169166',
-    'dev-desk'        => '1563986768609-322da13575f3',
+    'analytics'       => '1460925895917-afdab827c52f',
+    'dashboard'       => '1551288049-bebda4e38f71',
     'home'            => '1600585154340-be6161a56a0c',
-    'sme'             => '1522071820081-009f0129c71c',
-    'office'          => '1504384308090-c894fdcc538d',
-    'office-team'     => '1600880292203-757bb62b4baf',
-    'professional'    => '1573497019940-1c28c88b4f3e',
+    'shop'            => '1604719312566-8912e9227c6a',
+    'office'          => '1497366216548-37526070297c',
     'school'          => '1580582932707-520aed937b7b',
     'warehouse'       => '1553413077-190dd305871c',
     'farm'            => '1535379453347-1ffd615e2e08',
-    'construction'    => '1541888946425-d81bb19240f5',
+    'construction'    => '1535732759880-bbd5c7265e3f',
     'city'            => '1486406146926-c627a92ad1ab',
+    // people (Black professionals)
+    'technician'      => '1621905251189-08b45d6a269e',
+    'technician-2'    => '1621905252507-b35492cc74b4',
+    'team-desk'       => '1531482615713-2afd69097998',
+    'server-woman'    => '1573164713988-8665fc963095',
+    'meeting'         => '1573496267526-08a69e46a409',
+    'professional'    => '1573497019418-b400bb3ab074',
 ];
 
 function img($key, $w = 1200, $h = null)
@@ -92,6 +150,7 @@ function wa($message = 'Hello H.Tubman Solutions, I would like to enquire about 
 /* ---------------- services (homepage priority order) ---------------- */
 $SERVICES = [
     'cctv' => [
+        'h1'      => 'Professional CCTV Installation in Kampala & Uganda',
         'option'  => 'CCTV Installation',
         'title'   => 'CCTV & Security Systems',
         'nav'     => 'CCTV Installation',
@@ -101,6 +160,7 @@ $SERVICES = [
         'excerpt' => 'Professional CCTV design, installation, remote viewing and maintenance for homes, businesses and institutions.',
     ],
     'networking' => [
+        'h1'      => 'Networking, Wi-Fi & Structured Cabling in Kampala',
         'option'  => 'Networking & Wi-Fi',
         'title'   => 'Networking & Infrastructure',
         'nav'     => 'Networking',
@@ -109,8 +169,8 @@ $SERVICES = [
         'img'     => 'network-switch',
         'banner'  => 'fiber-rack',
         'excerpt' => 'Wired and wireless networks, structured cabling and Wi-Fi designed, installed and maintained for reliability.',
-        'seo_title' => 'Networking Company in Kampala | LAN, Wi-Fi & Structured Cabling | H.Tubman Solutions',
-        'seo_desc'  => 'LAN and Wi-Fi installation, structured cabling, router and switch configuration, VLANs and network troubleshooting for homes, offices and institutions in Kampala and Uganda.',
+        'seo_title' => 'Networking, Wi-Fi & Structured Cabling Kampala | H.Tubman',
+        'seo_desc'  => 'Reliable networking, structured cabling & Wi-Fi installation for offices and homes in Kampala. Quality installation and quick support. Get a free quote today.',
         'headline'  => ['Reliable Networks for', 'Connected Businesses'],
         'intro'     => [
             'Your business depends on a stable network.',
@@ -126,15 +186,16 @@ $SERVICES = [
         'cta'       => 'Talk to a Network Specialist',
     ],
     'access-control' => [
+        'h1'      => 'Access Control & Biometric Systems in Uganda',
         'option'  => 'Access Control & Biometrics',
         'title'   => 'Access Control & Biometrics',
         'nav'     => 'Access Control & Biometrics',
         'page'    => 'access-control.php',
         'icon'    => 'fa-fingerprint',
-        'img'     => 'smart-lock',
+        'img'     => 'vault',
         'excerpt' => 'Fingerprint, facial recognition, card and PIN access with attendance and visitor management.',
-        'seo_title' => 'Access Control & Biometric Systems in Uganda | H.Tubman Solutions',
-        'seo_desc'  => 'Fingerprint biometric systems, facial recognition, RFID card access, magnetic locks, time attendance and visitor management for offices, schools, hotels and warehouses in Uganda.',
+        'seo_title' => 'Access Control & Fingerprint Attendance Uganda | H.Tubman',
+        'seo_desc'  => 'Fingerprint & facial recognition, RFID card access, magnetic locks and biometric time attendance for offices, schools, hotels and warehouses in Uganda. Free quote.',
         'headline'  => ['Control Who Enters', 'Your Premises'],
         'intro'     => [
             'Improve physical security and manage access to your premises using modern access control technology.',
@@ -149,6 +210,7 @@ $SERVICES = [
         'cta'       => 'Request an Access Control Quote',
     ],
     'it-support' => [
+        'h1'      => 'IT Support & Managed IT Services in Kampala',
         'option'  => 'IT Support',
         'title'   => 'IT Support & Managed Services',
         'nav'     => 'IT Support',
@@ -156,8 +218,8 @@ $SERVICES = [
         'icon'    => 'fa-headset',
         'img'     => 'team-desk',
         'excerpt' => 'On-site and remote IT support, maintenance and managed services that keep your team productive.',
-        'seo_title' => 'IT Support in Kampala | Managed IT Services Uganda | H.Tubman Solutions',
-        'seo_desc'  => 'Professional IT support in Kampala: computer and printer troubleshooting, Windows and software installation, email setup, backups, server support and managed IT services.',
+        'seo_title' => 'IT Support Kampala | Business IT Services Uganda | H.Tubman Solutions',
+        'seo_desc'  => 'Quick, reliable IT support for businesses in Kampala: computers, printers, email, backups, networks and servers - on-site, remote or managed. Contact us today.',
         'headline'  => ['Technology Support That Keeps', 'Your Business Moving'],
         'intro'     => [
             'Technical problems can interrupt business operations.',
@@ -173,16 +235,17 @@ $SERVICES = [
         'cta'       => 'Request IT Support',
     ],
     'servers' => [
+        'h1'      => 'Server Installation & Data Solutions in Uganda',
         'option'  => 'Servers & Infrastructure',
         'title'   => 'Servers & Data Solutions',
         'nav'     => 'Servers & Infrastructure',
         'page'    => 'servers.php',
         'icon'    => 'fa-server',
         'img'     => 'server-woman',
-        'banner'  => 'datacenter',
+        'banner'  => 'server-rack',
         'excerpt' => 'Windows Server, Active Directory, file servers, storage and backups built for your operations.',
-        'seo_title' => 'Server Installation & Data Solutions in Uganda | H.Tubman Solutions',
-        'seo_desc'  => 'Windows Server deployment, Active Directory, DNS & DHCP, file servers, network storage, backup solutions and server maintenance for organizations in Uganda.',
+        'seo_title' => 'Server Installation & Backup Solutions Uganda | H.Tubman',
+        'seo_desc'  => 'Windows Server, Active Directory, DNS & DHCP, file servers, network storage and backup solutions for organizations in Uganda. Talk to an infrastructure expert.',
         'headline'  => ['Build a Reliable', 'IT Infrastructure'],
         'intro'     => [
             'We help organizations deploy and maintain server and data infrastructure suitable for their operational requirements.',
@@ -192,6 +255,7 @@ $SERVICES = [
         'cta'       => 'Talk to an Infrastructure Expert',
     ],
     'cybersecurity' => [
+        'h1'      => 'Cybersecurity Services for Businesses in Uganda',
         'option'  => 'Cybersecurity',
         'title'   => 'Cybersecurity',
         'nav'     => 'Cybersecurity',
@@ -200,8 +264,8 @@ $SERVICES = [
         'img'     => 'padlock',
         'banner'  => 'circuit',
         'excerpt' => 'Endpoint protection, firewalls, access controls and practical security for your digital environment.',
-        'seo_title' => 'Cybersecurity Services in Uganda | Firewall & Endpoint Security | H.Tubman Solutions',
-        'seo_desc'  => 'Practical cybersecurity for Ugandan businesses: endpoint security, antivirus deployment, firewall configuration, network security, backup planning and security assessments.',
+        'seo_title' => 'Cybersecurity Services Uganda | Firewall & Antivirus | H.Tubman',
+        'seo_desc'  => 'Practical cybersecurity for Ugandan businesses: endpoint security, antivirus, firewall configuration, network security, backup planning and security assessments.',
         'headline'  => ['Protect Your', 'Digital Environment'],
         'intro'     => [
             'Modern businesses face increasing digital security risks.',
@@ -212,16 +276,17 @@ $SERVICES = [
         'cta'       => 'Strengthen Your Security',
     ],
     'hardware' => [
+        'h1'      => 'Computer & Hardware Supply in Uganda',
         'option'  => 'Hardware / Equipment Supply',
         'title'   => 'Hardware & Technology Supply',
         'nav'     => 'Hardware Solutions',
         'page'    => 'hardware.php',
         'icon'    => 'fa-computer',
-        'img'     => 'hardware-repair',
-        'banner'  => 'cpu',
+        'img'     => 'cpu',
+        'banner'  => 'circuit-green',
         'excerpt' => 'Supply, installation and maintenance of computers, printers, networking, CCTV and UPS equipment.',
-        'seo_title' => 'Computer & Hardware Supply in Uganda | Laptops, Printers, UPS | H.Tubman Solutions',
-        'seo_desc'  => 'We supply, install and maintain desktops, laptops, servers, printers, networking, CCTV and access control equipment, UPS systems and accessories in Uganda.',
+        'seo_title' => 'Computer, Laptop & Printer Supply Uganda | H.Tubman',
+        'seo_desc'  => 'Genuine desktops, laptops, servers, printers, networking, CCTV & access control equipment and UPS systems in Uganda - supplied, installed and maintained.',
         'headline'  => ['Technology Supply', '& Maintenance'],
         'intro'     => [
             'We supply, install and maintain a range of technology equipment for businesses and organizations.',
@@ -236,16 +301,17 @@ $SERVICES = [
         'cta'       => 'Request Equipment Quote',
     ],
     'digital-solutions' => [
+        'h1'      => 'Website Design & Digital Solutions in Kampala',
         'option'  => 'Website & Digital Solutions',
         'title'   => 'Website & Digital Solutions',
         'nav'     => 'Website & Digital Solutions',
         'page'    => 'digital-solutions.php',
         'icon'    => 'fa-laptop-code',
         'img'     => 'web-design',
-        'banner'  => 'dev-desk',
+        'banner'  => 'analytics',
         'excerpt' => 'Business websites, domains, hosting, business email and ongoing updates for a strong online presence.',
-        'seo_title' => 'Website Design in Kampala | Business Websites & Email | H.Tubman Solutions',
-        'seo_desc'  => 'Business website design and development, website maintenance, domain and hosting support, business email setup and basic SEO for companies in Kampala and Uganda.',
+        'seo_title' => 'Website Design Kampala | Business Websites & Email | H.Tubman',
+        'seo_desc'  => 'Affordable, professional business websites in Kampala: design, development, hosting & domain support, business email setup, maintenance and basic SEO.',
         'headline'  => ['Build a Strong', 'Digital Presence'],
         'intro'     => [
             'Your website is often the first place potential customers encounter your business.',
@@ -288,17 +354,36 @@ $FAQS = [
     ['Do you provide maintenance?', 'Yes. We provide technical support and maintenance for CCTV, networking, IT and other technology systems.'],
     ['Can you install CCTV for a home?', 'Yes. We provide residential CCTV solutions for homes, apartments and private properties.'],
     ['Do you provide quotations before installation?', 'Yes. We can assess your requirements and prepare a quotation based on the proposed solution.'],
+    ['Where can I get CCTV installation near me in Kampala?', 'H.Tubman Solutions Limited installs CCTV cameras for homes, businesses and institutions in Kampala and surrounding areas, and supports projects in other parts of Uganda depending on requirements. Call ' . $SITE['phones'][0] . ' or WhatsApp ' . $SITE['whatsapp_display'] . ' to book a site assessment.'],
+    ['Which CCTV camera brands do you install?', 'We work with recognized surveillance brands such as Hikvision, Dahua, TP-Link and Ubiquiti, as well as other compatible professional equipment. Recommendations depend on your requirements, budget and equipment availability.'],
+    ['Do you sell CCTV cameras or only install them?', 'Both. We supply genuine CCTV equipment - cameras, NVR/DVR recorders, hard disks and accessories - and we also install, configure and maintain complete systems.'],
+    ['What is the difference between IP and HD analog CCTV cameras?', 'IP cameras send digital video over a network to an NVR and generally offer higher resolution and easier remote access. HD analog cameras send video over coaxial cable to a DVR and can be a cost-effective way to upgrade an existing system. We recommend the right option after assessing your site.'],
+    ['How long does CCTV installation take?', 'It depends on the number of cameras, cabling distances and site conditions. We confirm the timeline together with your quotation after the site assessment.'],
+];
+
+/* ICT, networking, access control & IT support questions */
+$FAQ_ICT = [
+    ['Do you offer IT support for businesses in Kampala?', 'Yes. We provide on-site and remote IT support - computer and printer troubleshooting, Windows and software installation, email setup, backups, network troubleshooting and server support - as well as scheduled or ongoing managed IT support.'],
+    ['Can you install Wi-Fi and networking for my office or home?', 'Yes. We design, install and configure LAN and Wi-Fi networks, structured cabling, routers, switches and wireless access points, and we troubleshoot and optimize existing networks.'],
+    ['Do you install biometric fingerprint and attendance systems?', 'Yes. We install fingerprint and facial recognition systems, RFID card and PIN access, magnetic locks, and biometric time attendance and visitor management systems for offices, schools, hotels, warehouses and other premises.'],
+    ['Can you set up servers and data backups?', 'Yes. We deploy and maintain Windows Server, Active Directory, DNS & DHCP, file servers, network storage and backup solutions suited to your operations.'],
+    ['Can you protect my business from viruses and cyber threats?', 'We provide practical cybersecurity: endpoint security and antivirus deployment, firewall configuration, network security, user access controls, password and security policies, system updates, backup planning and basic security assessments.'],
+    ['Do you supply computers, laptops, printers and UPS systems?', 'Yes. We supply desktops, laptops, servers, printers, networking and Wi-Fi equipment, CCTV and access control equipment, storage devices, UPS systems, accessories and structured cabling materials - and we provide diagnostics, repairs and upgrades.'],
+    ['Do you design websites for businesses in Uganda?', 'Yes. We offer business website design and development, website maintenance and updates, domain and hosting support, business email setup and basic SEO.'],
+];
+
+/* working with H.Tubman */
+$FAQ_GENERAL = [
+    ['How do I get a quote from H.Tubman Solutions?', 'Use the quote form on this website, call ' . $SITE['phones'][0] . ' or ' . $SITE['phones'][1] . ', or WhatsApp ' . $SITE['whatsapp_display'] . '. Tell us what you need and where, and we will assess your requirements and prepare a quotation.'],
+    ['Where is H.Tubman Solutions located?', 'We are based in Kampala, Uganda, and work with clients in Kampala and other locations depending on project requirements.'],
+    ['What does H.Tubman Solutions do?', 'H.Tubman Solutions Limited is a Ugandan technology and security company providing CCTV installation, access control and biometrics, networking, IT support, servers, cybersecurity, hardware supply and website solutions for homes, businesses and institutions.'],
+    ['Why choose a professional CCTV and ICT installer?', 'A system is only as effective as its installation and configuration. We consider camera positioning, lighting, coverage, network infrastructure, storage, remote access, power availability and future expansion - and we support the system after installation.'],
 ];
 
 /* ---------------- clients ---------------- */
 $CLIENTS = [
-    'Pinnacle Integrated Resources',
-    'Hass Petroleum',
-    'Belo Energies',
-    'Yoacel Poultry Farm',
-    'Cloudvill Hotels',
-    'SAMCO CONSTRUCTION COMPANY',
-    'World Choice Interiors',
+    'Pinnacle Integrated Resources', 'Hass Petroleum', 'Belo Energies', 'Yoacel Poultry Farm',
+    'Cloudvill Hotels', 'SAMCO Construction Company', 'World Choice Interiors',
 ];
 /* ---------------- values / why us ---------------- */
 $WHY = [
@@ -323,6 +408,46 @@ $APPROACH = [
     ['Install it Professionally', 'Our technicians install, configure and test everything to a professional standard.', 'fa-screwdriver-wrench'],
     ['Support it Afterwards', 'We stay with you through maintenance, troubleshooting and future upgrades.', 'fa-headset'],
 ];
+
+/* ---------------- CCTV landing page data ---------------- */
+$CCTV_SERVICES = ['CCTV camera installation', 'Indoor & outdoor CCTV systems', 'IP cameras', 'HD analog cameras', 'PTZ cameras', 'Dome cameras', 'Bullet cameras', 'Turret cameras', 'Night-vision cameras', 'ColorVu / full-color surveillance', 'Solar-powered CCTV systems', '4G/LTE CCTV solutions', 'NVR & DVR installation', 'Hard disk installation & configuration', 'Remote CCTV viewing', 'CCTV mobile app configuration', 'CCTV system upgrades', 'CCTV troubleshooting', 'CCTV maintenance', 'Camera relocation & reconfiguration', 'CCTV network design', 'Commercial surveillance systems'];
+
+$CCTV_ENVIRONMENTS = [
+    ['Home CCTV', 'Monitor entrances, compounds, garages and other important areas of your home, apartment or private property.', 'fa-house', 'home'],
+    ['Business & Office CCTV', 'Protect offices, shops, restaurants, supermarkets and commercial premises.', 'fa-building', 'shop'],
+    ['Warehouse CCTV', 'Monitor stock areas, loading zones, entrances and sensitive sections.', 'fa-warehouse', 'warehouse'],
+    ['Farm CCTV', 'Monitor large compounds, gates, equipment and remote areas — with solar and 4G options.', 'fa-tractor', 'farm'],
+    ['School & Institution CCTV', 'Improve visibility around classrooms, entrances, compounds and facilities.', 'fa-school', 'school'],
+    ['Construction Site CCTV', 'Monitor equipment, materials, workers and site access — temporary or permanent.', 'fa-helmet-safety', 'construction'],
+];
+
+$CCTV_TECH = [
+    ['ip-cameras', 'IP Cameras', 'High-resolution network cameras that record to an NVR and integrate with your network for remote viewing.', 'fa-video'],
+    ['hd-analog', 'HD Analog Cameras', 'Cost-effective HD cameras paired with DVR recorders — a practical way to upgrade existing installations.', 'fa-film'],
+    ['ptz-cameras', 'PTZ Cameras', 'Pan, tilt and zoom cameras that cover wide areas such as compounds, parking and yards from a single point.', 'fa-arrows-up-down-left-right'],
+    ['camera-types', 'Dome, Bullet & Turret', 'The right housing for every position — discreet domes indoors, long-range bullets and versatile turrets outdoors.', 'fa-circle-dot'],
+    ['night-vision', 'Night-Vision Cameras', 'Infrared cameras that keep recording clear footage in low light and complete darkness.', 'fa-moon'],
+    ['colorvu', 'ColorVu / Full-Color', 'Full-color surveillance solutions that capture color detail at night for better identification.', 'fa-palette'],
+    ['solar-cctv', 'Solar-Powered CCTV', 'Surveillance for locations where conventional power may be unavailable or unreliable.', 'fa-solar-panel'],
+    ['4g-cctv', '4G/LTE CCTV', 'Cameras connected over mobile data for farms, construction sites and remote locations without fixed internet.', 'fa-tower-cell'],
+    ['nvr-dvr', 'NVR & DVR Installation', 'Recorder setup with hard disk installation and configuration, recording schedules and motion detection.', 'fa-hard-drive'],
+    ['remote-monitoring', 'Remote CCTV Viewing', 'Watch your cameras live from your smartphone or computer, with CCTV mobile app configuration.', 'fa-mobile-screen-button'],
+    ['network-design', 'CCTV Network Design', 'Cabling, switches, power and storage planned so your cameras stay online and recordings stay available.', 'fa-diagram-project'],
+    ['commercial', 'Commercial Surveillance', 'Multi-camera systems for offices, warehouses, institutions and large commercial premises.', 'fa-building-shield'],
+];
+
+$CCTV_PROCESS = [
+    ['Site Assessment', 'We inspect your property and identify important areas that require surveillance.'],
+    ['Security Design', 'We determine suitable camera types, positions, recording requirements, storage and network infrastructure.'],
+    ['Equipment Selection', 'We recommend equipment based on your requirements and budget.'],
+    ['Professional Installation', 'Our technicians install cameras, cabling, NVR/DVR systems, power equipment and network components.'],
+    ['Configuration', 'We configure recording, motion detection, remote access, mobile viewing and other required features.'],
+    ['Testing & Handover', 'We test the system and demonstrate how to monitor and manage your cameras.'],
+    ['After-Sales Support', 'We provide technical support, maintenance, troubleshooting and system upgrades.'],
+];
+
+/* service areas (local "near me" searches). Kampala divisions & neighbourhoods + nearby towns */
+$AREAS = ['Kampala Central', 'Nakawa', 'Kawempe', 'Makindye', 'Rubaga', 'Ntinda', 'Kololo', 'Nakasero', 'Bugolobi', 'Muyenga', 'Kansanga', 'Naalya', 'Kira', 'Najjera', 'Wakiso', 'Entebbe', 'Mukono', 'Kajjansi'];
 
 /* options for every enquiry form */
 $SERVICE_OPTIONS = [

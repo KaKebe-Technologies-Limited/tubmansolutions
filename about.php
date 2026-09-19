@@ -1,8 +1,7 @@
 <?php
 $page_key   = 'about';
-$meta_title = 'About H.Tubman Solutions Limited | CCTV & ICT Company in Kampala, Uganda';
+$meta_title = 'About Us | CCTV & ICT Company in Kampala, Uganda | H.Tubman';
 $meta_desc  = 'H.Tubman Solutions Limited is a Ugandan technology solutions company providing professional CCTV, security, networking, IT support and digital technology services.';
-$canonical  = 'about.php';
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
@@ -30,7 +29,7 @@ page_banner('About <span class="hl">H.Tubman Solutions</span>', ['About Us'], 't
                 <span>Support it afterwards</span>
             </div>
             <p>We aim to build long-term relationships with our clients by providing dependable technology solutions and responsive technical support.</p>
-            <a class="btn btn-primary" href="contact.php">Talk to Our Team <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-primary" href="<?= e(u('contact.php')) ?>">Talk to Our Team <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>

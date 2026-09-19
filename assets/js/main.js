@@ -142,6 +142,84 @@
         setInterval(tick, 1000);
     }
 
+    /* ---------- search overlay with live results ---------- */
+    var sOverlay = document.getElementById('searchOverlay');
+    var sBtn = document.querySelector('.search-btn');
+    if (sOverlay && sBtn) {
+        var sInput = document.getElementById('siteSearchInput');
+        var sLive = sOverlay.querySelector('.search-live');
+        var sTimer = null, lastQ = '', ctrl = null;
+        var esc = function (s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        };
+        var openSearch = function () {
+            sOverlay.hidden = false;
+            sBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            setTimeout(function () { sInput.focus(); }, 30);
+        };
+        var closeSearch = function () {
+            sOverlay.hidden = true;
+            sBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            sBtn.focus();
+        };
+        var live = function () {
+            var q = sInput.value.trim();
+            if (q === lastQ) return;
+            lastQ = q;
+            if (q.length < 2) { sLive.innerHTML = ''; return; }
+            if (ctrl) ctrl.abort();
+            ctrl = window.AbortController ? new AbortController() : null;
+            var base = window.SITE_SEARCH || 'search';
+            fetch(base + '?format=json&q=' + encodeURIComponent(q), ctrl ? { signal: ctrl.signal } : {})
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    var h = '';
+                    if (d.did_you_mean) {
+                        h += '<p class="sl-dym">Did you mean <a href="' + base + '?q=' + encodeURIComponent(d.did_you_mean) + '">' + esc(d.did_you_mean) + '</a>?</p>';
+                    }
+                    if (d.answer) {
+                        h += '<a class="sl-answer" href="' + esc(d.answer.url) + '"><span><i class="fa-solid fa-bolt"></i> Quick answer</span><strong>' +
+                            esc(d.answer.question) + '</strong><em>' + esc(d.answer.text) + '</em></a>';
+                    }
+                    (d.results || []).forEach(function (r) {
+                        // r.snippet is escaped server-side and only contains <mark> highlights
+                        h += '<a class="sl-item" href="' + esc(r.url) + '"><span class="r-type r-' + esc(r.type.toLowerCase()) + '">' + esc(r.type) +
+                            '</span><strong>' + esc(r.title) + '</strong><em>' + r.snippet + '</em></a>';
+                    });
+                    if (h) {
+                        h += '<a class="sl-all" href="' + base + '?q=' + encodeURIComponent(q) + '">See all results for “' + esc(q) + '” →</a>';
+                    } else {
+                        h = '<p class="sl-empty">No matches yet. Press Enter for full results, or <a href="https://wa.me/' + (window.SITE_WA || '') +
+                            '?text=' + encodeURIComponent('Hello H.Tubman Solutions, I am looking for: ' + q) + '" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>';
+                    }
+                    sLive.innerHTML = h;
+                })
+                .catch(function () {});
+        };
+        sBtn.addEventListener('click', openSearch);
+        sOverlay.querySelector('.search-close').addEventListener('click', closeSearch);
+        sOverlay.addEventListener('click', function (e) { if (e.target === sOverlay) closeSearch(); });
+        sInput.addEventListener('input', function () { clearTimeout(sTimer); sTimer = setTimeout(live, 180); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !sOverlay.hidden) closeSearch();
+            var tag = (document.activeElement && document.activeElement.tagName) || '';
+            if (e.key === '/' && sOverlay.hidden && !/INPUT|TEXTAREA|SELECT/.test(tag)) { e.preventDefault(); openSearch(); }
+        });
+    }
+
+    /* ---------- open the FAQ answer a link points to (e.g. faq#q-how-much-...) ---------- */
+    var openHash = function () {
+        var id = decodeURIComponent(location.hash.slice(1));
+        var el = id && document.getElementById(id);
+        if (el && el.tagName === 'DETAILS') el.open = true;
+    };
+    openHash();
+    window.addEventListener('hashchange', openHash);
+
     /* ---------- enquiry forms: validation + "Send via WhatsApp" ---------- */
     function fieldVal(form, name) {
         var f = form.elements[name];

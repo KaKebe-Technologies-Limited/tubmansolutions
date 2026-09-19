@@ -1,53 +1,23 @@
 <?php
 $page_key   = 'cctv.php';
-$meta_title = 'CCTV Installation in Kampala & Uganda | CCTV Cameras & Security Systems';
-$meta_desc  = 'Get professional CCTV installation in Kampala and across Uganda. We supply and install IP cameras, DVR/NVR systems, PTZ, night vision, solar CCTV and remote monitoring solutions.';
-$canonical  = 'cctv.php';
+$meta_title = 'CCTV Installation Uganda | Security Cameras Kampala | H.Tubman';
+$meta_desc  = 'Expert CCTV camera installation for homes, offices & warehouses in Kampala and across Uganda. Phone viewing, solar CCTV, repairs. Free quote.';
+$og_title   = 'CCTV Installation Kampala | Professional Security Systems';
+$og_desc    = 'Keep an eye on your property with professionally installed CCTV. Serving Kampala and all of Uganda. Call or WhatsApp for a site assessment.';
+require_once __DIR__ . '/includes/config.php';
+$preload_image = img('cctv-wall', 1920);
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/partials.php';
 
-$cctv_services = ['CCTV camera installation', 'Indoor & outdoor CCTV systems', 'IP cameras', 'HD analog cameras', 'PTZ cameras', 'Dome cameras', 'Bullet cameras', 'Turret cameras', 'Night-vision cameras', 'ColorVu / full-color surveillance', 'Solar-powered CCTV systems', '4G/LTE CCTV solutions', 'NVR & DVR installation', 'Hard disk installation & configuration', 'Remote CCTV viewing', 'CCTV mobile app configuration', 'CCTV system upgrades', 'CCTV troubleshooting', 'CCTV maintenance', 'Camera relocation & reconfiguration', 'CCTV network design', 'Commercial surveillance systems'];
-
-$env_tiles = [
-    ['Home CCTV', 'Monitor entrances, compounds, garages and other important areas of your home, apartment or private property.', 'fa-house', 'home'],
-    ['Business & Office CCTV', 'Protect offices, shops, restaurants, supermarkets and commercial premises.', 'fa-building', 'office'],
-    ['Warehouse CCTV', 'Monitor stock areas, loading zones, entrances and sensitive sections.', 'fa-warehouse', 'warehouse'],
-    ['Farm CCTV', 'Monitor large compounds, gates, equipment and remote areas — with solar and 4G options.', 'fa-tractor', 'farm'],
-    ['School & Institution CCTV', 'Improve visibility around classrooms, entrances, compounds and facilities.', 'fa-school', 'school'],
-    ['Construction Site CCTV', 'Monitor equipment, materials, workers and site access — temporary or permanent.', 'fa-helmet-safety', 'construction'],
-];
-
-$tech = [
-    ['ip-cameras', 'IP Cameras', 'High-resolution network cameras that record to an NVR and integrate with your network for remote viewing.', 'fa-video'],
-    ['hd-analog', 'HD Analog Cameras', 'Cost-effective HD cameras paired with DVR recorders — a practical way to upgrade existing installations.', 'fa-film'],
-    ['ptz-cameras', 'PTZ Cameras', 'Pan, tilt and zoom cameras that cover wide areas such as compounds, parking and yards from a single point.', 'fa-arrows-up-down-left-right'],
-    ['camera-types', 'Dome, Bullet & Turret', 'The right housing for every position — discreet domes indoors, long-range bullets and versatile turrets outdoors.', 'fa-circle-dot'],
-    ['night-vision', 'Night-Vision Cameras', 'Infrared cameras that keep recording clear footage in low light and complete darkness.', 'fa-moon'],
-    ['colorvu', 'ColorVu / Full-Color', 'Full-color surveillance solutions that capture color detail at night for better identification.', 'fa-palette'],
-    ['solar-cctv', 'Solar-Powered CCTV', 'Surveillance for locations where conventional power may be unavailable or unreliable.', 'fa-solar-panel'],
-    ['4g-cctv', '4G/LTE CCTV', 'Cameras connected over mobile data for farms, construction sites and remote locations without fixed internet.', 'fa-tower-cell'],
-    ['nvr-dvr', 'NVR & DVR Installation', 'Recorder setup with hard disk installation and configuration, recording schedules and motion detection.', 'fa-hard-drive'],
-    ['remote-monitoring', 'Remote CCTV Viewing', 'Watch your cameras live from your smartphone or computer, with CCTV mobile app configuration.', 'fa-mobile-screen-button'],
-    ['network-design', 'CCTV Network Design', 'Cabling, switches, power and storage planned so your cameras stay online and recordings stay available.', 'fa-diagram-project'],
-    ['commercial', 'Commercial Surveillance', 'Multi-camera systems for offices, warehouses, institutions and large commercial premises.', 'fa-building-shield'],
-];
-
-$process = [
-    ['Site Assessment', 'We inspect your property and identify important areas that require surveillance.'],
-    ['Security Design', 'We determine suitable camera types, positions, recording requirements, storage and network infrastructure.'],
-    ['Equipment Selection', 'We recommend equipment based on your requirements and budget.'],
-    ['Professional Installation', 'Our technicians install cameras, cabling, NVR/DVR systems, power equipment and network components.'],
-    ['Configuration', 'We configure recording, motion detection, remote access, mobile viewing and other required features.'],
-    ['Testing & Handover', 'We test the system and demonstrate how to monitor and manage your cameras.'],
-    ['After-Sales Support', 'We provide technical support, maintenance, troubleshooting and system upgrades.'],
-];
+$SEO_CRUMBS[] = ['CCTV & Security', 'cctv.php'];
+$SEO_EXTRA[]  = service_node('CCTV Installation in Kampala & Uganda', 'End-to-end CCTV surveillance: site assessment, camera selection, installation, NVR/DVR setup, remote phone viewing, solar and 4G CCTV, maintenance, repair and upgrades for homes, businesses and institutions in Uganda.', 'cctv.php', $CCTV_SERVICES, 'CCTV installation');
 ?>
 
 <!-- ===================== CCTV HERO ===================== -->
 <section class="page-banner cctv-hero" style="--bg:url('<?= e(img('cctv-wall', 1920)) ?>')">
     <div class="container">
         <span class="hero-tag">CCTV &amp; Video Surveillance</span>
-        <h1>CCTV Installation in Kampala &amp; <span class="hl">Uganda</span></h1>
+        <h1>Professional CCTV Installation in Kampala &amp; <span class="hl">Uganda</span></h1>
         <p class="lead">H.Tubman Solutions Limited provides end-to-end CCTV surveillance solutions designed to give you visibility, security and peace of mind — from site assessment and camera selection to installation, remote viewing and maintenance.</p>
         <div class="btn-row">
             <a class="btn btn-primary" href="#site-assessment">Get a Free CCTV Quote <i class="fa-solid fa-arrow-right"></i></a>
@@ -60,7 +30,7 @@ $process = [
             <li><i class="fa-solid fa-circle-check"></i>Maintenance &amp; Repair</li>
         </ul>
         <ol class="breadcrumb" aria-label="Breadcrumb">
-            <li><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="<?= e(u('index.php')) ?>"><i class="fa-solid fa-house"></i> Home</a></li>
             <li aria-current="page">CCTV &amp; Security</li>
         </ol>
     </div>
@@ -119,7 +89,7 @@ $process = [
             <p>Everything you need to plan, install, view and maintain a reliable surveillance system.</p>
         </div>
         <ul class="chip-grid">
-            <?php foreach ($cctv_services as $c): ?>
+            <?php foreach ($CCTV_SERVICES as $c): ?>
                 <li data-reveal><i class="fa-solid fa-check"></i><?= e($c) ?></li>
             <?php endforeach; ?>
         </ul>
@@ -137,7 +107,7 @@ $process = [
             <p>Every property is different. We design coverage, camera types and recording around how your site is actually used.</p>
         </div>
         <div class="env-tiles">
-            <?php foreach ($env_tiles as $t): ?>
+            <?php foreach ($CCTV_ENVIRONMENTS as $t): ?>
                 <article class="env-tile" data-reveal>
                     <img src="<?= e(img($t[3], 700, 525)) ?>" alt="" loading="lazy">
                     <div class="et-body">
@@ -159,7 +129,7 @@ $process = [
             <p>We match the camera technology to your lighting, power, connectivity and coverage requirements.</p>
         </div>
         <div class="tech-grid">
-            <?php foreach ($tech as $t): ?>
+            <?php foreach ($CCTV_TECH as $t): ?>
                 <div class="tech-card" id="<?= e($t[0]) ?>" data-reveal>
                     <span class="t-icon"><i class="fa-solid <?= e($t[3]) ?>"></i></span>
                     <h3><?= e($t[1]) ?></h3>
@@ -179,7 +149,7 @@ $process = [
             <p>A clear, seven-step process so you know exactly what happens at every stage.</p>
         </div>
         <div class="process">
-            <?php foreach ($process as $i => $p): ?>
+            <?php foreach ($CCTV_PROCESS as $i => $p): ?>
                 <div class="process-step" data-reveal>
                     <span class="p-num"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></span>
                     <h3><?= e($p[0]) ?></h3>
@@ -194,13 +164,13 @@ $process = [
 <section class="sec">
     <div class="container spot-grid">
         <div class="cam-view" data-reveal>
-            <img src="<?= e(img('control-room', 1100)) ?>" alt="CCTV monitoring screens in a control room" loading="lazy">
+            <img src="<?= e(img('home', 1100)) ?>" alt="CCTV camera view of a home compound at night" loading="lazy">
             <span class="scan" aria-hidden="true"></span>
             <div class="cam-hud" aria-hidden="true">
                 <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
                 <span class="rec">LIVE</span>
-                <span class="cam-id">16 CH · NVR</span>
-                <span class="cam-loc">MONITORING</span>
+                <span class="cam-id">CAM 04 · NIGHT</span>
+                <span class="cam-loc">COMPOUND</span>
                 <span class="cam-time" data-cam-clock></span>
             </div>
         </div>
@@ -237,7 +207,7 @@ $process = [
                 <span class="ai-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
                 <div><h4>Relocation, Reconfiguration &amp; Mobile App Setup</h4><p>Camera relocation, hard disk replacement, NVR/DVR settings and remote viewing on your phone.</p></div>
             </div>
-            <a class="btn btn-primary" href="contact.php?service=<?= rawurlencode('CCTV Repair / Maintenance') ?>#quote">Request CCTV Repair <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-primary" href="<?= e(u('contact.php')) ?>?service=<?= rawurlencode('CCTV Repair / Maintenance') ?>#quote">Request CCTV Repair <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="about-media" data-reveal>
             <div class="about-img-main"><img src="<?= e(img('technician', 900)) ?>" alt="Technician working on a wall-mounted installation" loading="lazy"></div>
@@ -260,6 +230,23 @@ $process = [
             <li>HIKVISION</li><li>dahua</li><li>tp-link</li><li>UBIQUITI</li>
         </ul>
         <p class="note center" style="margin-top:24px">Equipment recommendations depend on the project requirements and availability.</p>
+    </div>
+</section>
+
+<!-- ===================== AREAS WE SERVE ===================== -->
+<section class="sec areas" id="areas">
+    <div class="container">
+        <div class="sec-head" data-reveal>
+            <?= sub_title('Areas We Serve') ?>
+            <h2 class="sec-title">CCTV Installers Near You in <span class="hl">Kampala &amp; Uganda</span></h2>
+            <p>Based in Kampala, we install and maintain CCTV, access control and networks for homes and businesses across the city and surrounding areas, and support projects in other parts of Uganda depending on requirements.</p>
+        </div>
+        <ul class="area-list" data-reveal>
+            <?php foreach ($AREAS as $area): ?>
+                <li><i class="fa-solid fa-location-dot"></i><?= e($area) ?></li>
+            <?php endforeach; ?>
+            <li class="more"><i class="fa-solid fa-map-location-dot"></i>Other locations in Uganda on request</li>
+        </ul>
     </div>
 </section>
 
